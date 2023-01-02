@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+'''
+pip install pytube
+'''
+
+import argparse
+from datetime import datetime
+import pdb
+from pytube import YouTube
+
+def download_360p_mp4_videos(url: str, outpath: str = "./"):
+
+    yt = YouTube(url)
+    pub_date = yt.publish_date.strftime("%m-%d-%Y")
+
+    print(f'title: {yt.title}')
+    print(f'  url: {url}')
+    print(f'  author: {yt.author}')
+    print(f'  published: {pub_date}')
+    print(f'  length: {yt.length}')
+    print(f'  views: {yt.views}')
+
+    filename = f'{yt.author} - {yt.title.replace("/", "")} - {pub_date}.mp4'
+    yt.streams.filter(file_extension="mp4").get_by_resolution("360p").download(outpath,filename=filename)
+
+
+#############################
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description='Download YouTube video')
+    parser.add_argument('input', nargs='?', help='full name of YouTube video')
+    args = parser.parse_args()
+
+    if not args.input or args.input == 'url_list.txt' :
+        fn_in = 'url_list.txt'
+        with open(fn_in) as file:
+            lines = file.readlines()
+            lines = [line.strip() for line in lines]
+    else :
+        lines = args.input
+
+    for url in lines :
+        if url :
+            download_360p_mp4_videos(url)
