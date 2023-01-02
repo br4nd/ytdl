@@ -1,4 +1,4 @@
-1. Create folder (mine is named ytdl) and put the attached files
+1. Create folder (ytdl) with ytdl and url_list.txt
 2. Open terminal and cd to ytdl.
 3. In terminal 'chmod +x ytdl’
 4. Open url_list.txt in editor.
