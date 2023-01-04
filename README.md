@@ -1,3 +1,4 @@
+0. Requires pytube (pip install pytube)
 1. Create folder (ytdl) with ytdl and url_list.txt
 2. Open terminal and cd to ytdl.
 3. In terminal 'chmod +x ytdl’
